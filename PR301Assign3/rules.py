@@ -5,17 +5,17 @@ from abc import ABCMeta, abstractmethod
 class Rules(object):
     def __init__(self):
         self.rules = {'id_rule': IDRule().rule,
-                      'gender_rule': None,
-                      'age_rule': None,
-                      'sales_rule': None,
-                      'bmi_rule': None,
-                      'salary_rule: None,
-                      'birthday_rule': None
+                      'gender_rule': GenderRule().rule,
+                      'age_rule': AgeRule().rule,
+                      'sales_rule': SalesRule().rule,
+                      'bmi_rule': BMIRule().rule,
+                      'salary_rule': SalaryRule().rule,
+                      'birthday_rule': BirthdayRule().rule
                       }
 
 
 # Abstract Rule Class, #
-# Not sure what methods are abstract in this class yet#
+
 class Rule(metaclass=ABCMeta):
     def __init__(self):
         self.rule = None
@@ -33,9 +33,43 @@ class Rule(metaclass=ABCMeta):
 class IDRule(Rule):
     def __init__(self):
         super().__init__()
-        self.rule = "TEST IDRULE"
+        self.rule = "^[A-Z][0-9]{3}$"
 
-# Tests to see my logic works # 
+
+class GenderRule(Rule):
+    def __init__(self):
+        super().__init__()
+        self.rule = "^(M|F)$"
+
+
+class AgeRule(Rule):
+    def __init__(self):
+        super().__init__()
+        self.rule = "^[0-9]{2}$"
+
+
+class SalesRule(Rule):
+    def __init__(self):
+        super().__init__()
+        self.rule = "^[0-9]{3}$"
+
+
+class BMIRule(Rule):
+    def __init__(self):
+        super().__init__()
+        self.rule = "^(Normal|Overweight|Obesity|Underweight)$"
+
+
+class SalaryRule(Rule):
+    def __init__(self):
+        super().__init__()
+        self.rule = "^[0-9]{2,3}$"
+
+
+class BirthdayRule(Rule):
+    def __init__(self):
+        super().__init__()
+        self.rule = "^[1-31]-[1-12]-[0-9]{4}$"
 
 a = Rules()
 print(a)
